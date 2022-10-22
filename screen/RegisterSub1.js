@@ -17,31 +17,30 @@ const RegisterSub1= ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 8.5}} className='w-full rounded-b-xl  bg-green-regis'>
-      <Text className="text-3xl text-white font-bold text-center mt-10 ">Register</Text>
-        <View className="mt-40 inset-x-4 w-11/12">
-          <View>
-            <Text className="text-1xl text-white font-bold mt-5">SSN / Passsport</Text>
-            <View className='w-full bg-base mt-2 rounded-lg'>
-              <TextInput></TextInput>
+        <ScrollView className="mb-10" >
+          
+          <Text style={{fontFamily: "NotoSans-Bold"}} className="text-3xl text-white text-center mt-10 ">Register</Text>
+          <View className="mt-40 inset-x-4 w-11/12">
+            <View>
+              <Text style={{fontFamily: "NotoSans-Bold"}} className="text-1xl text-white mt-5">SSN / Passsport</Text>
+              <View className='w-full bg-white mt-2 rounded-lg'>
+                <TextInput className="ml-2"></TextInput>
+              </View>
+            </View>
+            <View>
+              <Text style={{fontFamily: "NotoSans-Bold"}} className="text-1xl text-white mt-8">Citizenship</Text>
+              <View className='w-full bg-white mt-2 rounded-lg'>
+                <TextInput className="ml-2"></TextInput>
+              </View>
+            </View>
+            <View>
+              <Text style={{fontFamily: "NotoSans-Bold"}} className="text-1xl text-white mt-8">Country</Text>
+              <View className='w-full bg-white mt-2 rounded-lg'>
+                <TextInput className="ml-2"></TextInput>
+              </View>
             </View>
           </View>
-
-          <View>
-            <Text className="text-1xl text-white font-bold mt-8">Citizenship</Text>
-            <View className='w-full bg-base mt-2 rounded-lg'>
-              <TextInput className='focus'></TextInput>
-            </View>
-          </View>
-
-          <View>
-            <Text className="text-1xl text-white font-bold mt-8">Country</Text>
-            <View className='w-full bg-base mt-2 rounded-lg'>
-              <TextInput className='focus'></TextInput>
-            </View>
-          </View>
-
-        </View>
-        
+        </ScrollView>
 
       </View>
       <View style={{flex: 1.5}}>

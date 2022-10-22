@@ -13,6 +13,11 @@ module.exports = {
       'white' : '#FFFFFF',
       'red-button' : "#FD6565",
       'green-button' : "#8DD0BD",
+      'pin-button' : "#FBFFF5",
+      'dark-base' : "#E1D8D8",
+      'black' : "#000000",
+      'gray-pin': "#BEBEBE",
+
     },
   },
   plugins: [],
