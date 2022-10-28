@@ -38,14 +38,13 @@ const NewPin = ({navigation}) => {
     }
   };
   const delClick = () => {
-    if (pin.lenght == 0) return;
+    if (pin.length == 0) return;
     setPin(val => val.slice(0, -1));
   };
 
   useEffect(() => {
     (() => {
-      if (pin.lenght >= 6) {
-        console.log('asdasd6');
+      if (pin.length >= 6) {
         setCheckState({
           pin1: true,
           pin2: true,
@@ -54,8 +53,7 @@ const NewPin = ({navigation}) => {
           pin5: true,
           pin6: true,
         });
-      } else if (pin.lenght >= 5) {
-        console.log('asdasd5');
+      } else if (pin.length >= 5) {
         setCheckState({
           pin1: true,
           pin2: true,
@@ -64,8 +62,7 @@ const NewPin = ({navigation}) => {
           pin5: true,
           pin6: false,
         });
-      } else if (pin.lenght >= 4) {
-        console.log('asdasd4');
+      } else if (pin.length >= 4) {
         setCheckState({
           pin1: true,
           pin2: true,
@@ -74,8 +71,7 @@ const NewPin = ({navigation}) => {
           pin5: false,
           pin6: false,
         });
-      } else if (pin.lenght >= 3) {
-        onsole.log('asdasd3');
+      } else if (pin.length >= 3) {
         setCheckState({
           pin1: true,
           pin2: true,
@@ -84,8 +80,7 @@ const NewPin = ({navigation}) => {
           pin5: false,
           pin6: false,
         });
-      } else if (pin.lenght >= 2) {
-        onsole.log('asdasd2');
+      } else if (pin.length >= 2) {
         setCheckState({
           pin1: true,
           pin2: true,
@@ -94,8 +89,7 @@ const NewPin = ({navigation}) => {
           pin5: false,
           pin6: false,
         });
-      } else if (pin.lenght >= 1) {
-        onsole.log('asdasd1');
+      } else if (pin.length >= 1) {
         setCheckState({
           pin1: true,
           pin2: false,
@@ -104,8 +98,7 @@ const NewPin = ({navigation}) => {
           pin5: false,
           pin6: false,
         });
-      } else if (pin.lenght >= 0) {
-        onsole.log('asdasd0');
+      } else if (pin.length >= 0) {
         setCheckState({
           pin1: false,
           pin2: false,
@@ -115,9 +108,14 @@ const NewPin = ({navigation}) => {
           pin6: false,
         });
       }
-      console.log(typeof pin,pin.lenght);
+      console.log(typeof pin,pin.length);
     })();
-    if (pin.lenght === 6) {
+    if (pin.length === 6) {
+      if (pin == '111111' ){
+        console.log("vaid PIN!")
+        navigation.navigate("RegisterSub5")
+
+      }
       //check
 
     }
@@ -174,7 +172,7 @@ const NewPin = ({navigation}) => {
 
           <TouchableHighlight
             className="rounded-full"
-            onPress={() => delClick()}>
+            onPress={delClick}>
             <View className="flex h-20 w-20 justify-center items-center flex-row rounded-full">
               <Image source={back} className="w-16 h-16 items-center" />
             </View>

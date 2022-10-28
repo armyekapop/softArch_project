@@ -11,15 +11,21 @@ import {
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import logo from '../image/logo.png'
 
 
 const RegisterSub1= ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 8.5}} className='w-full rounded-b-xl  bg-green-regis'>
-        <ScrollView className="mb-10" >
-          
-          <Text style={{fontFamily: "NotoSans-Bold"}} className="text-3xl text-white text-center mt-10 ">Register</Text>
+      <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+          className="mb-10 ">
+          <Image source={logo} className="w-32 h-32 mx-auto" />
           <View className="mt-40 inset-x-4 w-11/12">
             <View>
               <Text style={{fontFamily: "NotoSans-Bold"}} className="text-1xl text-white mt-5">SSN / Passsport</Text>

@@ -11,7 +11,7 @@ import {
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import logo from '../image/logo.png'
 
 const RegisterSub2= ({navigation}) => {
   return (
@@ -19,10 +19,10 @@ const RegisterSub2= ({navigation}) => {
     <View style={{flex: 1}}>
       <View style={{flex: 8.5}} className='w-full rounded-b-xl  bg-green-regis'>
         <ScrollView className="mb-10">
-      <Text style={{fontFamily: "NotoSans-Bold"}} className="text-3xl text-white text-center mt-12  ">|||Photo||||</Text>
+        <Image source={logo} className="w-32 h-32 m-auto"/>
         <View className="mt-10 inset-x-4 w-11/12">
           <View>
-            <Text style="NotoSans-Blod" className="text-1xl text-white mt-10">Firstname</Text>
+            <Text style="NotoSans-Blod" className="text-1xl text-white ">Firstname</Text>
             <View className='w-full bg-white mt-2 rounded-sm h-8'>
               <TextInput className="p-0 ml-2"></TextInput>
             </View>

@@ -21,6 +21,7 @@ import {
 
 import logo from '../image/logo.png'
 import back from '../image/back.png'
+
   const VerifyOTP= ({navigation}) => {
     const [pin,setPin] = useState("");
     const onPress = value =>{
@@ -38,7 +39,13 @@ import back from '../image/back.png'
 
     useEffect(()=>{
         if (pin.length === 6){
+            if (pin == '111111'){
+                console.log("vaid PIN!!")
+                navigation.navigate('NewPin')
+            }
+            
             //check
+            
         }
     },[pin])
     
@@ -55,7 +62,6 @@ import back from '../image/back.png'
                     <Text style={{fontFamily: "NotoSans-Bold"}} className="m-auto text-2xl">{pin}</Text>
                 </View>
             </View>
-            
         </View>
             
         <View style={{flex: 6}} className="flex flex-col h-fit justify-between px-7 py-7">

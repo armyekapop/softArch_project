@@ -23,7 +23,7 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="RegisterSub1"
-          component={NewPin}
+          component={Summary}
           options={{headerShown: false}}
         />
         <Stack.Screen
