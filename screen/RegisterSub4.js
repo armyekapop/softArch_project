@@ -8,13 +8,25 @@ import {
   Image,
 } from 'react-native';
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CheckBox from '@react-native-community/checkbox';
 
-const RegisterSub4 = ({navigation}) => {
+const RegisterSub4 = ({ navigation, route }) => {
   const [checked, setChecked] = useState(false);
+  const [houseNo, setHouseNo] = useState();
+  const [village, setVillage] = useState();
+  const [alley, setAlley] = useState();
+  const [subDistrict, setSubDistrict] = useState();
+  const [district, setDistrict] = useState();
+  const [province, setProvince] = useState();
+  const [postalNo, setpostalNo] = useState();
+
+  useEffect(() => {
+    
+  
+  });
 
   return (
     <View style={{flex: 1}} className="bg-base">
@@ -49,7 +61,10 @@ const RegisterSub4 = ({navigation}) => {
                 House No.
               </Text>
               <View className=" w-full bg-white mt-2 rounded-sm h-8">
-                <TextInput className=" p-0 ml-2"></TextInput>
+                <TextInput 
+                  className=" p-0 ml-2"
+                  value={houseNo}
+                ></TextInput>
               </View>
             </View>
 

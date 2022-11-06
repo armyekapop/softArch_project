@@ -14,6 +14,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import logo from '../image/logo.png'
 
 const RegisterSub2= ({navigation}) => {
+  const [firstName, setFirstName] = useState('');
   return (
     
     <View style={{flex: 1}}>
@@ -24,7 +25,7 @@ const RegisterSub2= ({navigation}) => {
           <View>
             <Text style="NotoSans-Blod" className="text-1xl text-white ">Firstname</Text>
             <View className='w-full bg-white mt-2 rounded-sm h-8'>
-              <TextInput className="p-0 ml-2"></TextInput>
+              <TextInput className="p-0 ml-2" value={Firstname}></TextInput>
             </View>
           </View>
 

@@ -15,30 +15,48 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import logo from '../image/logo.png';
 
-const Career = [
-  {
-    data: [
+
+  
+  const career= [
       {
         id: '1',
-        Title: 'Student',
+        title: 'Student',
       },
       {
         id: '2',
-        Title: 'Teacher',
+        title: 'Teacher',
       },
       {
         id: '3',
-        Title: 'Doctor',
+        title: 'Doctor',
       },
-    ],
+    ];
+
+
+
+const salary = [
+  {
+    id: '1',
+    title: '0 - 10,000'
+  },
+  {
+    id: '2',
+    title: '10,001 - 50,000'
+  },
+  {
+    id: '3',
+    title: '50,001 - 100,000'
+  },
+  {
+    id: '4',
+    title: '100,000 ++'
   },
 ];
-
-const Salary = {};
 const height = Dimensions.get('window').height;
 
 const RegisterSub5 = ({navigation}) => {
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selectedCareer, setSelectedCareer] = useState();
+  const [selectedSalary, setSelectedSalary] = useState();
 
   return (
     <View style={{flex: 1}}>
@@ -54,7 +72,7 @@ const RegisterSub5 = ({navigation}) => {
           className="mb-10 ">
           <Image source={logo} className="w-32 h-32 mx-auto" />
           <View className="  pb-10 inset-x-4 w-11/12 flex flex-col justify-end">
-            <View >
+            <View>
               <Text
                 style={{fontFamily: 'NotoSans-Bold'}}
                 className="text-1xl text-white mt-5">
@@ -62,12 +80,16 @@ const RegisterSub5 = ({navigation}) => {
               </Text>
               <View className="w-full bg-white mt-2 rounded-lg">
                 <Picker
-                  selectedValue={selectedLanguage}
-                  onValueChange={(itemValue, itemIndex) =>
-                    setSelectedLanguage(itemValue)
-                  }>
-                  <Picker.Item label="Java" value="java" />
-                  <Picker.Item label="JavaScript" value="js" />
+                  selectedValue={selectedCareer}
+                  onValueChange={careerId => this.onSelectedCareer(careerId)}>
+                  {career.map(function (career) {
+                    return (
+                      <Picker.Item
+                        label={career.title}
+                        value={career.id}
+                      />
+                    );
+                  })}
                 </Picker>
               </View>
             </View>
@@ -78,13 +100,17 @@ const RegisterSub5 = ({navigation}) => {
                 Salary
               </Text>
               <View className="w-full bg-white mt-2 rounded-lg">
-                <Picker
-                  selectedValue={selectedLanguage}
-                  onValueChange={(itemValue, itemIndex) =>
-                    setSelectedLanguage(itemValue)
-                  }>
-                  <Picker.Item label="Java" value="java" />
-                  <Picker.Item label="JavaScript" value="js" />
+              <Picker
+                  selectedValue={selectedSalary}
+                  onValueChange={salaryId => this.onSelectedSalary(salaryId)}>
+                  {salary.map(function (salary) {
+                    return (
+                      <Picker.Item
+                        label={salary.title}
+                        value={salary.id}
+                      />
+                    );
+                  })}
                 </Picker>
               </View>
             </View>

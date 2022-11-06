@@ -16,7 +16,13 @@ import { Checkbox } from 'react-native-paper';
   
   const RegisterSub3= ({ navigation }) => {
     const [checked, setChecked] = React.useState(false);
-
+    const [houseNo, setHouseNo] = useState();
+    const [village, setVillage] = useState();
+    const [alley, setAlley] = useState();
+    const [subDistrict, setSubDistrict] = useState();
+    const [district, setDistrict] = useState();
+    const [province, setProvince] = useState();
+    const [postalNo, setpostalNo] = useState();
     return (
       
       <View style={{flex: 1}} className="bg-base">
@@ -31,7 +37,7 @@ import { Checkbox } from 'react-native-paper';
                     <View>
                         <Text style={{fontFamily: "NotoSans-Bold"}} className="text-1xl text-white mt-4">House No.</Text>
                         <View className=' w-full bg-white mt-2 rounded-sm h-8'>
-                            <TextInput className=" p-0 ml-2"></TextInput>
+                            <TextInput value={houseNo} className=" p-0 ml-2"></TextInput>
                         </View>
                     </View>
         
@@ -103,7 +109,9 @@ import { Checkbox } from 'react-native-paper';
 
                 <View className=" justify-items-start basis-1/2">
                     <View className="flex-1 flex-row-reverse">
-                        <Pressable onPress={() => navigation.navigate('RegisterSub4')}>
+                        <Pressable onPress={() => navigation.navigate('RegisterSub4',{
+                            houseNo:houseNo
+                        })}>
                             <View className=" my-auto mr-5 w-14 h-14 rounded-full bg-green-button justify-items-end"
                                 >
                                 <Image tintColor='white' className=" h-2/3 w-3/5 m-auto " source={{uri: 'https://cdn-icons-png.flaticon.com/512/2889/2889731.png'}}>

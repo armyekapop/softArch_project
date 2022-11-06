@@ -17,7 +17,7 @@ module.exports = {
       'dark-base' : "#E1D8D8",
       'black' : "#000000",
       'gray-pin': "#BEBEBE",
-
+      'green-total' : "#009006",
     },
   },
   plugins: [],

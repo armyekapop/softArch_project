@@ -113,7 +113,7 @@ const NewPin = ({navigation}) => {
     if (pin.length === 6) {
       if (pin == '111111' ){
         console.log("vaid PIN!")
-        navigation.navigate("RegisterSub5")
+        navigation.navigate("Summary")
 
       }
       //check

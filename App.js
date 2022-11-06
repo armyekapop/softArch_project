@@ -21,9 +21,9 @@ const App = () => {
     
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="RegisterSub1"
-          component={Summary}
+          component={RegisterSub1}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -55,17 +55,17 @@ const App = () => {
           name="VerifyOTP"
           component={VerifyOTP}
           options={{headerShown: false}}
-        />
+        /> */}
         <Stack.Screen
           name="Summary"
           component={Summary}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="NewPin"
           component={NewPin}
           options={{headerShown: false}}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   )
