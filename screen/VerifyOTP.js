@@ -39,7 +39,7 @@ import back from '../image/back.png'
 
     useEffect(()=>{
         if (pin.length === 6){
-            if (pin == '111111'){
+            if (pin == '222222'){
                 console.log("vaid PIN!!")
                 navigation.navigate('NewPin')
             }

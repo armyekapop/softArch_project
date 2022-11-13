@@ -9,12 +9,14 @@ import {
   Alert,
 } from 'react-native';
 
-import React from 'react';
+import React,{useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import logo from '../image/logo.png'
 
 const RegisterSub6 = ({navigation}) => {
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
   return (
     <View style={{flex: 1}}>
       <View style={{flex: 8.5}} className="w-full rounded-b-xl  bg-green-regis">
@@ -33,8 +35,11 @@ const RegisterSub6 = ({navigation}) => {
                 className="text-1xl text-white mt-5">
                 Phone
               </Text>
-              <View className="w-full bg-white mt-2 rounded-lg">
-                <TextInput className="ml-2"></TextInput>
+              <View className="w-full bg-white mt-2 rounded-lg h-12">
+              <TextInput
+                  className="p-0 ml-2 my-auto text-black"
+                  onChangeText={newText => setPhone(newText)}
+                  maxLength={30}></TextInput>
               </View>
             </View>
             <View>
@@ -43,8 +48,11 @@ const RegisterSub6 = ({navigation}) => {
                 className="text-1xl text-white mt-8">
                 Email
               </Text>
-              <View className="w-full bg-white mt-2 rounded-lg">
-                <TextInput className="ml-2"></TextInput>
+              <View className="w-full bg-white mt-2 rounded-lg h-12">
+              <TextInput
+                  className="p-0 ml-2 my-auto text-black"
+                  onChangeText={newText => setEmail(newText)}
+                  maxLength={30}></TextInput>
               </View>
             </View>
           </View>

@@ -113,7 +113,7 @@ const NewPin = ({navigation}) => {
     if (pin.length === 6) {
       if (pin == '111111' ){
         console.log("vaid PIN!")
-        navigation.navigate("RegisterSub5")
+        navigation.navigate("ConfirmPin")
 
       }
       //check
@@ -131,7 +131,7 @@ const NewPin = ({navigation}) => {
           <Text
             style={{fontFamily: 'NotoSans-Bold'}}
             className="text-3xl text-egg">
-            Please Enter OTP PIN
+            Create Pin
           </Text>
 
           <View className=" w-2/3 h-10 flex-1 flex-row justify-between items-center">
