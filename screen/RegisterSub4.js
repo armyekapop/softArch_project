@@ -17,16 +17,102 @@ const RegisterSub4 = ({ navigation, route }) => {
   const [checked, setChecked] = useState(false);
   const [houseNo, setHouseNo] = useState();
   const [village, setVillage] = useState();
-  const [alley, setAlley] = useState();
+  const [lane, setLane] = useState();
+  const [road, setRoad] = useState();
   const [subDistrict, setSubDistrict] = useState();
   const [district, setDistrict] = useState();
   const [province, setProvince] = useState();
-  const [postalNo, setpostalNo] = useState();
-
-  useEffect(() => {
+  const [postalNo, setPostalNo] = useState();
+  const checkValidate = () => {
+    var submit = true;
     
-  
-  });
+    if (houseNo == null || houseNo == '') {
+      submit = false;
+      alert('Please enter your House No.');
+    }
+    else if (!houseNo.match(/^[0-9/]+$/)){
+      submit = false;
+      alert("House No. must have only 0-9, / characters.");
+    }
+    else if (village == null || village == '') {
+      submit = false;
+      alert('Please enter your Village.');
+    }
+    else if (!village.match(/^[0-9a-zA-Z]+$/)){
+      submit = false;
+      alert("Village must have only a-Z , A-Z, 0-9 characters.");
+    }
+    else if (lane == null || lane == "") {
+      submit = false;
+      alert('Please enter your lane.');
+    }
+    else if (!lane.match(/^[0-9a-zA-Z]+$/)){
+      submit = false;
+      alert("Lane must have only a-Z , A-Z, 0-9 characters.");
+    }
+    else if (road == null || road == '') {
+      submit = false;
+      alert('Please enter your road.');
+    }
+    else if (!road.match(/^[0-9a-zA-Z]+$/)){
+      submit = false;
+      alert("Road must have only a-Z , A-Z, 0-9 characters.");
+    }
+    else if (subDistrict == null || subDistrict == '') {
+      submit = false;
+      alert('Please enter your Sub-District.');
+    }
+    else if (!subDistrict.match(/^[0-9a-zA-Z]+$/)){
+      submit = false;
+      alert("Sub-District must have only a-Z , A-Z, 0-9 characters.");
+    }
+    else if (district == null || district == '') {
+      submit = false;
+      alert('Please enter your District.');
+    }
+    else if (!district.match(/^[0-9a-zA-Z]+$/)){
+      submit = false;
+      alert("District must have only a-Z , A-Z, 0-9 characters.");
+    }
+    else if (province == null || province == '') {
+      submit = false;
+      alert('Please enter your Province.');
+    }
+    else if (!province.match(/^[0-9a-zA-Z]+$/)){
+      submit = false;
+      alert("Province must have only a-Z , A-Z, 0-9 characters.");
+    }
+    else if (postalNo == null || postalNo == '') {
+      submit = false;
+      alert('Please enter your Postal number.');
+    }
+    else if (postalNo.length < 5) {
+      submit = false;
+      alert('Postal number must have 5 characters.');
+    }
+    else if (!postalNo.match(/^[0-9]+$/)){
+      submit = false;
+      alert("Postal number must have 0-9 characters.");
+    }
+    
+    
+    if (submit == true){
+      console.log("valid");
+      navigation.navigate('RegisterSub5')
+    }
+  };
+  useEffect(() => {
+    if(checked === true) {
+      setHouseNo("123");
+      setVillage("asd");
+      setLane("asdasd");
+      setRoad("asdasd");
+      setSubDistrict("asdasd");
+      setDistrict("asd");
+      setProvince("asd");
+      setPostalNo("11111");
+      console.log("checked");
+  }});
 
   return (
     <View style={{flex: 1}} className="bg-base">
@@ -61,22 +147,43 @@ const RegisterSub4 = ({ navigation, route }) => {
                 House No.
               </Text>
               <View className=" w-full bg-white mt-2 rounded-sm h-8">
-                <TextInput 
-                  className=" p-0 ml-2"
+                <TextInput
                   value={houseNo}
-                ></TextInput>
+                  className="p-0 ml-2 my-auto text-black"
+                  onChangeText={newText => setHouseNo(newText)}
+                  maxLength={30}></TextInput>
               </View>
             </View>
+
+            <View>
+              <Text
+                style={{fontFamily: 'NotoSans-Bold'}}
+                className="text-1xl text-white mt-4">
+                Village
+              </Text>
+              <View className=" w-full bg-white mt-2 rounded-sm h-8">
+                <TextInput
+                  value={village}
+                  className="p-0 ml-2 my-auto text-black"
+                  onChangeText={newText => setVillage(newText)}
+                  maxLength={30}></TextInput>
+              </View>
+            </View>
+            
 
             <View className="flex-row flex-1">
               <View className="justify-items-start basis-5/12">
                 <Text
                   style={{fontFamily: 'NotoSans-Bold'}}
                   className="text-1xl text-white mt-3">
-                  Village
+                  Lane
                 </Text>
                 <View className="w-full bg-white mt-2 rounded-sm h-8">
-                  <TextInput className="p-0 ml-2"></TextInput>
+                <TextInput
+                  value={lane}
+                  className="p-0 ml-2 my-auto text-black"
+                  onChangeText={newText => setLane(newText)}
+                  maxLength={30}></TextInput>
                 </View>
               </View>
               <View className="justify-items-center basis-2/12"></View>
@@ -85,13 +192,18 @@ const RegisterSub4 = ({ navigation, route }) => {
                 <Text
                   style={{fontFamily: 'NotoSans-Bold'}}
                   className="text-1xl text-white mt-3">
-                  Alley
+                  Road
                 </Text>
                 <View className="w-full bg-white mt-2 rounded-sm h-8">
-                  <TextInput className="p-0 ml-2"></TextInput>
+                <TextInput
+                  value="road"
+                  className="p-0 ml-2 my-auto text-black"
+                  onChangeText={newText => setRoad(newText)}
+                  maxLength={30}></TextInput>
                 </View>
               </View>
             </View>
+
 
             <View>
               <Text
@@ -100,7 +212,11 @@ const RegisterSub4 = ({ navigation, route }) => {
                 Sub-District
               </Text>
               <View className="w-full bg-white mt-2 rounded-sm h-8">
-                <TextInput className="p-0 ml-2"></TextInput>
+              <TextInput
+                  value={subDistrict}
+                  className="p-0 ml-2 my-auto text-black"
+                  onChangeText={newText => setSubDistrict(newText)}
+                  maxLength={30}></TextInput>
               </View>
             </View>
 
@@ -111,7 +227,11 @@ const RegisterSub4 = ({ navigation, route }) => {
                 District
               </Text>
               <View className="w-full bg-white mt-2 rounded-sm h-8">
-                <TextInput className="p-0 ml-2"></TextInput>
+              <TextInput
+                  value={district}
+                  className="p-0 ml-2 my-auto text-black"
+                  onChangeText={newText => setDistrict(newText)}
+                  maxLength={30}></TextInput>
               </View>
             </View>
 
@@ -122,7 +242,11 @@ const RegisterSub4 = ({ navigation, route }) => {
                 Province
               </Text>
               <View className="w-full bg-white mt-2 rounded-sm h-8">
-                <TextInput className="p-0 ml-2"></TextInput>
+              <TextInput
+                  value={province}
+                  className="p-0 ml-2 my-auto text-black"
+                  onChangeText={newText => setProvince(newText)}
+                  maxLength={30}></TextInput>
               </View>
             </View>
 
@@ -133,7 +257,11 @@ const RegisterSub4 = ({ navigation, route }) => {
                 Postal Number
               </Text>
               <View className="w-full bg-white mt-2 rounded-sm h-8">
-                <TextInput className="p-0 ml-2"></TextInput>
+              <TextInput
+                value={postalNo}
+                  className="p-0 ml-2 my-auto text-black"
+                  onChangeText={newText => setPostalNo(newText)}
+                  maxLength={5}></TextInput>
               </View>
             </View>
           </View>
@@ -164,7 +292,7 @@ const RegisterSub4 = ({ navigation, route }) => {
 
           <View className=" justify-items-start basis-1/2">
             <View className="flex-1 flex-row-reverse">
-              <Pressable onPress={() => navigation.navigate('RegisterSub5')}>
+              <Pressable onPress={() => checkValidate()}>
                 <View className=" my-auto mr-5 w-14 h-14 rounded-full bg-green-button justify-items-end">
                   <Image
                     tintColor="white"

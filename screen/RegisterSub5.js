@@ -15,41 +15,37 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import logo from '../image/logo.png';
 
-
-  
-  const career= [
-      {
-        id: '1',
-        title: 'Student',
-      },
-      {
-        id: '2',
-        title: 'Teacher',
-      },
-      {
-        id: '3',
-        title: 'Doctor',
-      },
-    ];
-
-
+const career = [
+  {
+    id: '1',
+    title: 'Student',
+  },
+  {
+    id: '2',
+    title: 'Teacher',
+  },
+  {
+    id: '3',
+    title: 'Doctor',
+  },
+];
 
 const salary = [
   {
     id: '1',
-    title: '0 - 10,000'
+    title: '0 - 10,000',
   },
   {
     id: '2',
-    title: '10,001 - 50,000'
+    title: '10,001 - 50,000',
   },
   {
     id: '3',
-    title: '50,001 - 100,000'
+    title: '50,001 - 100,000',
   },
   {
     id: '4',
-    title: '100,000 ++'
+    title: '100,000 ++',
   },
 ];
 const height = Dimensions.get('window').height;
@@ -81,13 +77,11 @@ const RegisterSub5 = ({navigation}) => {
               <View className="w-full bg-white mt-2 rounded-lg">
                 <Picker
                   selectedValue={selectedCareer}
-                  onValueChange={careerId => this.onSelectedCareer(careerId)}>
+                  onValueChange={(itemValue, itemIndex) => setSelectedCareer(itemValue)
+                  }>
                   {career.map(function (career) {
                     return (
-                      <Picker.Item
-                        label={career.title}
-                        value={career.id}
-                      />
+                      <Picker.Item key={career.id} label={career.title} value={career.id} />
                     );
                   })}
                 </Picker>
@@ -100,15 +94,12 @@ const RegisterSub5 = ({navigation}) => {
                 Salary
               </Text>
               <View className="w-full bg-white mt-2 rounded-lg">
-              <Picker
+                <Picker
                   selectedValue={selectedSalary}
-                  onValueChange={salaryId => this.onSelectedSalary(salaryId)}>
+                  onValueChange={salaryId => setSelectedSalary(salaryId)}>
                   {salary.map(function (salary) {
                     return (
-                      <Picker.Item
-                        label={salary.title}
-                        value={salary.id}
-                      />
+                      <Picker.Item label={salary.title} value={salary.id} />
                     );
                   })}
                 </Picker>

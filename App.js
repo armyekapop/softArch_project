@@ -13,6 +13,7 @@ import RegisterSub6 from './screen/RegisterSub6.js'
 import VerifyOTP from './screen/VerifyOTP.js'
 import Summary from './screen/Summary.js'
 import NewPin from './screen/NewPin.js'
+import ConfirmPin from './screen/ConfirmPin.js'
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +22,7 @@ const App = () => {
     
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="RegisterSub1"
           component={RegisterSub1}
           options={{headerShown: false}}
@@ -55,17 +56,22 @@ const App = () => {
           name="VerifyOTP"
           component={VerifyOTP}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen
           name="Summary"
           component={Summary}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="NewPin"
           component={NewPin}
           options={{headerShown: false}}
-        /> */}
+        />
+        <Stack.Screen
+          name="ConfirmPin"
+          component={ConfirmPin}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

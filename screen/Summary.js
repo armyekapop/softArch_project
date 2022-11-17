@@ -1,4 +1,4 @@
-import {View, Text, Image, Pressable,Button} from 'react-native';
+import {View, Text, Image, Pressable, Button} from 'react-native';
 import React from 'react';
 
 import VerticalBarGraph from '@chartiful/react-native-vertical-bar-graph';
@@ -23,7 +23,7 @@ import {
 
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import CalendarPicker from 'react-native-calendar-picker';
-import DatePicker from 'react-native-neat-date-picker'
+import DatePicker from 'react-native-neat-date-picker';
 import setting from '../image/settng.png';
 import {Dimensions} from 'react-native';
 
@@ -40,8 +40,8 @@ const Summary = ({navigation}) => {
     sumIncome: '80,000',
     sumExpenses: '80,000',
     income: [
-      {x: '1 asdasd', y: 100},
-      {x: '2 asdasd', y: 123},
+      {x: 'Jan', y: 50},
+      {x: 'Feb', y: 123},
       {x: 'Mar', y: 124},
       {x: 'Apl', y: 98},
       {x: 'Jun', y: 56},
@@ -69,54 +69,68 @@ const Summary = ({navigation}) => {
     time: '2:32 PM',
   };
 
-  const [date, setDate] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [date, setDate] = useState();
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
 
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
   const [monthly, setMonthly] = useState('Monthly');
   const [transactionType, setTransactionType] = useState('Total Income');
-  const [showDatePicker, setShowDatePicker] = useState(false)
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showMonthPicker, setShowMonthPicker] = useState(false);
+  const [modePicker, setModePicker] = useState('range');
+
+  
+
   const openDatePicker = () => {
-    setShowDatePicker(true)
-  }
+    setShowDatePicker(true);
+  };
   const onCancel = () => {
     // You should close the modal in here
-    setShowDatePicker(false)
-  }
-  const onConfirm = ( date ) => {
+    setShowDatePicker(false);
+  };
+  const onConfirm = date => {
     // You should close the modal in here
-    setStartDate(date.startDate)
-    setEndDate(date.endDate)
-    setShowDatePicker(false)
-    
+      setStartDate(date.startDate);
+      setEndDate(date.endDate);
+      setShowDatePicker(false);
     // The parameter 'date' is a Date object so that you can use any Date prototype method.
-    console.log(111)
-  }
+    console.log(111);
+  };
 
-  const formatDate = (d) => {
+  const formatDate = d => {
     const date = new Date(d);
     const month = date.getMonth() + 1;
     return [
-      date.getFullYear(), 
-      month < 10 ? `0${month}` : month, 
-      date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()].join("-")
-  }
+      date.getFullYear(),
+      month < 10 ? `0${month}` : month,
+      date.getDate() < 10 ? `0${date.getDate()}` : date.getDate(),
+    ].join('-');
+  };
+
+
+  useEffect(() => {
+    // if(monthly === "Monthly") {
+    //   setModePicker("range");
+
+    // };
+    // if(monthly === "Daily") {
+    //   setModePicker("single");
+    // };
+  });
 
   return (
-    
     <View style={{flex: 1}}>
       <DatePicker
         isVisible={showDatePicker}
-        mode={'range'}
-        colorOptions={{headerColor:'#9DD9D2'}}
+        mode={modePicker}
+        colorOptions={{headerColor: '#9DD9D2'}}
         onCancel={onCancel}
         onConfirm={onConfirm}
         dateStringFormat={'dd-mm-yyyy'}
-        // modalStyles={}
-        // className = ''
       />
+      
       <View style={{flex: 7.5}} className=" bg-green-regis rounded-b-xl">
         <View className="flex-row mt-5">
           <Pressable onPress={() => navigation.navigate('RegisterSub3')}>
@@ -210,7 +224,7 @@ const Summary = ({navigation}) => {
               />
               <VictoryGroup offset={5} style={{data: {width: 5}}}>
                 <VictoryBar
-                  data={data.income}
+                  data={transactionType == "Total Expenses" ? null : data.income}
                   style={{
                     data: {
                       fill: '#8DD0BD',
@@ -219,7 +233,7 @@ const Summary = ({navigation}) => {
                 />
 
                 <VictoryBar
-                  data={data.outcome}
+                  data={transactionType == "Total Income" ? null : data.outcome}
                   style={{
                     data: {
                       fill: '#FD6565',
@@ -249,47 +263,73 @@ const Summary = ({navigation}) => {
 
               <View className="basis-1/3  flex-row-reverse">
                 <View className=" h-5 w-6/12 rounded-md bg-light-green my-auto">
-                  <View className=" flex flex-row justify-between p-1">
-                    <Text className=" text-[10px] text-bold mx-1">Monthly</Text>
-
+                
+                  <View className=" flex flex-row justify-between p-1" style={{position: 'absolute'}}>
+                    <View className="">
+                      <Text className=" text-[10px] text-bold mx-1 ">{monthly}</Text>
+                    </View>
+                    <View className="">
                     <Image
                       source={setting}
                       className="w-[10px] h-[10px] my-auto"
                     />
+                    </View>
                   </View>
+                  <Picker
+                  isVisible={false}
+                  style={{opacity: 0}}
+                  selectedValue={monthly}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setMonthly(itemValue)
+                  }>
+                  <Picker.Item label="Daily" value="Daily" />
+                  <Picker.Item label="Monthly" value="Monthly" />
+                </Picker>
                 </View>
               </View>
             </View>
           </View>
           <View className="flex-row">
             <View className="basis-5/12">
-              <Text>Transaction Type</Text>
-
-              <Picker
-                style={{width: 190, height: 20,}}
-                selectedValue={transactionType}
-                onValueChange={(itemValue, itemIndex) =>
-                  setTransactionType(itemValue)
-                }>
-                <Picker.Item label="Income - Expenses" value="incomeExpenses" />
-                <Picker.Item label="Total Income" value="totalIncome" />
-                <Picker.Item label="Total Expenses" value="totalExpenses" />
-              </Picker>
-
-              <View className="h-[0.5] w-full mx-auto bg-black"></View>
+              <Text className="text-black">Transaction Type</Text>
+              <Text
+                className=" ml-2 my-1.5 text-black mt-7"
+                style={{
+                  position: 'absolute',
+                }}>
+                {transactionType}
+              </Text>
+              <View className=" h-8">
+                <Picker
+                  style={{opacity: 0}}
+                  selectedValue={transactionType}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setTransactionType(itemValue)
+                  }>
+                  <Picker.Item
+                    label="Income - Expenses"
+                    value="Income - Expenses"
+                  />
+                  <Picker.Item label="Total Income" value="Total Income" />
+                  <Picker.Item label="Total Expenses" value="Total Expenses" />
+                </Picker>
+              </View>
+              <View className="h-[1] w-full mx-auto bg-black"></View>
             </View>
 
             <View className="basis-1/12"></View>
-            <View className=" basis-5/12 bg-red-button">
-              <Text>Period</Text>
+            <View className=" basis-5/12">
+              <Text className="text-black">Period</Text>
               <Pressable onPress={openDatePicker}>
-                <View>
-                  <Text className="text-xs">{startDate && `${formatDate(startDate)} - ${formatDate(endDate)}`}</Text>
+                <View className="h-8">
+                  <Text className="text-xs my-auto text-black ml-2">
+                    {startDate &&
+                      `${formatDate(startDate)} - ${formatDate(endDate)}`}
+                  </Text>
                 </View>
-
               </Pressable>
-              
-              <View className="h-[0.5] w-full mx-auto bg-black"></View>
+
+              <View className="h-[1] w-full mx-auto bg-black"></View>
             </View>
           </View>
 
