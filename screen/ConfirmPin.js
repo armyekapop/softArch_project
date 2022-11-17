@@ -20,6 +20,7 @@ import {
   import logo from '../image/logo.png';
   import back from '../image/back.png';
   import HiddlePin from './components/HiddlePin.js';
+  import AsyncStorage from '@react-native-async-storage/async-storage';
   
   const ConfirmPin = ({navigation}) => {
     // const [checkState, setCheckState] = useState({
@@ -31,6 +32,7 @@ import {
     //   pin6: false,
     // });
     const [pin, setPin] = useState('');
+    const [checkPin, setCheckPin] = useState('');
     const onPress = value => {
       if (/^([0-9]){0,5}$/.test(pin) && /^([0-9])$/.test(value)) {
         setPin(val => val + value);
@@ -44,74 +46,13 @@ import {
   
     useEffect(() => {
       (() => {
-        // if (pin.length >= 6) {
-        //   setCheckState({
-        //     pin1: true,
-        //     pin2: true,
-        //     pin3: true,
-        //     pin4: true,
-        //     pin5: true,
-        //     pin6: true,
-        //   });
-        // } else if (pin.length >= 5) {
-        //   setCheckState({
-        //     pin1: true,
-        //     pin2: true,
-        //     pin3: true,
-        //     pin4: true,
-        //     pin5: true,
-        //     pin6: false,
-        //   });
-        // } else if (pin.length >= 4) {
-        //   setCheckState({
-        //     pin1: true,
-        //     pin2: true,
-        //     pin3: true,
-        //     pin4: true,
-        //     pin5: false,
-        //     pin6: false,
-        //   });
-        // } else if (pin.length >= 3) {
-        //   setCheckState({
-        //     pin1: true,
-        //     pin2: true,
-        //     pin3: true,
-        //     pin4: false,
-        //     pin5: false,
-        //     pin6: false,
-        //   });
-        // } else if (pin.length >= 2) {
-        //   setCheckState({
-        //     pin1: true,
-        //     pin2: true,
-        //     pin3: false,
-        //     pin4: false,
-        //     pin5: false,
-        //     pin6: false,
-        //   });
-        // } else if (pin.length >= 1) {
-        //   setCheckState({
-        //     pin1: true,
-        //     pin2: false,
-        //     pin3: false,
-        //     pin4: false,
-        //     pin5: false,
-        //     pin6: false,
-        //   });
-        // } else if (pin.length >= 0) {
-        //   setCheckState({
-        //     pin1: false,
-        //     pin2: false,
-        //     pin3: false,
-        //     pin4: false,
-        //     pin5: false,
-        //     pin6: false,
-        //   });
-        // }
-        // console.log(typeof pin,pin.length);
+        readPin()
+        
       })();
       if (pin.length === 6) {
-        if (pin == '111111' ){
+        // readPin()
+        console.log(checkPin)
+        if (pin == checkPin){
           console.log("vaid PIN!")
           navigation.navigate("Summary")
   
@@ -120,10 +61,18 @@ import {
           setPin(val=>val.slice(0,-6))
           console.log("Invaid PIN!!")
       }
-        //check
   
       }
     }, [pin]);
+
+    const readPin = async () => {
+      try {
+        const sPin = await AsyncStorage.getItem('@storage_Key');
+        setCheckPin(sPin);
+      } catch (error) {
+        console.log("error read Pin")
+      }
+    };
   
     return (
       //update confirm pin

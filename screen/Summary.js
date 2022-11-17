@@ -19,6 +19,7 @@ import {
   VictoryStack,
   VictoryAxis,
   VictoryLabel,
+  VictoryLegend,
 } from 'victory-native';
 
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
@@ -76,7 +77,7 @@ const Summary = ({navigation}) => {
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
   const [monthly, setMonthly] = useState('Monthly');
-  const [transactionType, setTransactionType] = useState('Total Income');
+  const [transactionType, setTransactionType] = useState('Income - Expenses');
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showMonthPicker, setShowMonthPicker] = useState(false);
   const [modePicker, setModePicker] = useState('range');
@@ -194,6 +195,16 @@ const Summary = ({navigation}) => {
               domainPadding={{x: 20, y: 0}}
               width={screenWidth + 30}
               height={screenHeight * 0.4}>
+               
+               <VictoryLegend x={screenWidth/4} y={5}
+               gutter={35}
+              orientation="horizontal"
+              style={{title: {fontSize: 20 , fill:"FFF" } }}
+              data={[
+                { name: "Income", symbol: { fill: "#8DD0BD" }, labels: { fill: "#FFFFFF" } },
+                { name: "Expenses", symbol: { fill: "#FD6565" }, labels: { fill: "#FFFFFF" } }
+              ]}
+            />
               <VictoryAxis
                 tickLabelComponent={<VictoryLabel dy={0} dx={0} />}
                 tickFormat={data.X}

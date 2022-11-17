@@ -20,6 +20,9 @@ import {TouchableHighlight} from 'react-native';
 import logo from '../image/logo.png';
 import back from '../image/back.png';
 import HiddlePin from './components/HiddlePin.js';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 const NewPin = ({navigation}) => {
   const [checkState, setCheckState] = useState({
@@ -111,19 +114,28 @@ const NewPin = ({navigation}) => {
       // console.log(typeof pin,pin.length);
     })();
     if (pin.length === 6) {
-      if (pin == '111111' ){
-        console.log("vaid PIN!")
-        navigation.navigate("ConfirmPin")
-
-      }
-      else{
-        setPin(val=>val.slice(0,-6))
-        console.log("Invaid PIN!!")
-    }
+      savePin(pin);
+      navigation.navigate("ConfirmPin")
       //check
 
     }
   }, [pin]);
+
+  const savePin = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_Key', value)
+      console.log("save pin complete")
+    } catch (error) {
+      console.log("error storePin")
+    }
+  };
+  const readPin = async () => {
+    try {
+      const sPin = await AsyncStorage.getItem('@storage_Key')
+    } catch (error) {
+      console.log("error read Pin")
+    }
+  };
 
   return (
     <View style={{flex: 1}} className="bg-green-regis">

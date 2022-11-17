@@ -196,7 +196,7 @@ const RegisterSub4 = ({ navigation, route }) => {
                 </Text>
                 <View className="w-full bg-white mt-2 rounded-sm h-8">
                 <TextInput
-                  value="road"
+                  value={road}
                   className="p-0 ml-2 my-auto text-black"
                   onChangeText={newText => setRoad(newText)}
                   maxLength={30}></TextInput>
